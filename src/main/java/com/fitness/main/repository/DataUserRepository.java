@@ -1,0 +1,17 @@
+package com.fitness.main.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.fitness.main.entity.DataUser;
+
+
+public interface DataUserRepository extends JpaRepository<DataUser, Long>{
+	@Query(value="SELECT * from user where username=?1 and hp=?2",nativeQuery = true)
+	DataUser findByLogin(String username, String hp);
+	
+	@Query(value="SELECT * from user where username=?1",nativeQuery = true)
+	List<DataUser> findByUsername(String username);
+}
