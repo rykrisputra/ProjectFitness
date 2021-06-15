@@ -39,6 +39,8 @@ public class DataUser {
 	private String username;
 	private String password;
 	
-	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="idHistory", referencedColumnName = "idUser")
+    private  List<History> lstHistory = new ArrayList<History>();
 	
 }
