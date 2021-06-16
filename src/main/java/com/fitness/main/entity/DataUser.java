@@ -38,6 +38,7 @@ public class DataUser {
 	private String email;
 	private String username;
 	private String password;
+	private String image;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="idHistory", referencedColumnName = "idUser")
