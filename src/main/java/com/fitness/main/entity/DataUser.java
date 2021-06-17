@@ -29,7 +29,7 @@ public class DataUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idUser;
+	private long id;
 	private String namaLengkap;
 	private String tglLahir;
 	private int tgBadan;
@@ -41,7 +41,7 @@ public class DataUser {
 	private String image;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="idHistory", referencedColumnName = "idUser")
-    private  List<History> lstHistory = new ArrayList<History>();
+	@JoinColumn(name="id_user", referencedColumnName = "id")
+    private  List<History> lstHistory= new ArrayList<History>();
 	
 }

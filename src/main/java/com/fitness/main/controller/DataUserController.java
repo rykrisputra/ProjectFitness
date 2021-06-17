@@ -42,22 +42,30 @@ public class DataUserController {
 		return dataUserRepo.findByLogin(username, hp);
 	}
 	
-	@PostMapping("/")
-	public String addUser(@RequestParam(value = "file") MultipartFile images,@ModelAttribute(value="data")String dataJSON) throws IOException{
+	@PostMapping("/image")
+	public String addGambar(DataUser user,@RequestParam(value = "file") MultipartFile images) throws IOException{
 		String fileName = StringUtils.cleanPath(images.getOriginalFilename());
-		
-		String uploadDir = "src/main/java/user-photo/";
-		FileUtility.saveFile(uploadDir, fileName, images);
-		DataUser user= new Gson().fromJson(dataJSON, DataUser.class);
 		
 		user.setImage(fileName);
 		dataUserRepo.save(user);
+		String uploadDir = "src/main/java/user-photo/";
+		FileUtility.saveFile(uploadDir, fileName, images);
+		
+		
+		
+		
 		return "Berhasil memasukan data";
+	}
+	
+	@PostMapping("/register/")
+	public String addUser(@RequestBody DataUser user) {
+		dataUserRepo.save(user);
+		return "Insert Berhasil";
 	}
 	
 	@PostMapping("/register/{id}")
 	public String updateUser(@PathVariable String idUser, @RequestBody DataUser user) {
-		user.setIdUser(Long.parseLong(idUser));
+		user.setId(Long.parseLong(idUser));
 		dataUserRepo.save(user);
 		return "Update Berhasil";
 	}

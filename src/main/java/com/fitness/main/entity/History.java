@@ -28,13 +28,11 @@ import lombok.NoArgsConstructor;
 public class History {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idHistory;
+	private long id;
 	private String tgl;
 	private int skor;
 	private int kalori;
-	private String bbIdeal;
+	private int bbIdeal;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	 @JoinColumn(name="idUser")
-	private DataUser datauser;
+	
 }
